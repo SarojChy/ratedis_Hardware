@@ -42,19 +42,3 @@ void updateTime() {
   Serial.println(FormatedTime);
   delay(500);
 }
-//void toUnixTime() {
-//  struct tm timeinfo = { 0 };
-//  timeinfo.tm_year = atoi(Year) - 1900; // years since 1900
-//  timeinfo.tm_mon = atoi(Month);            // months since January (0-11)
-//  timeinfo.tm_mday = atoi(Day);          // day of the month (1-31)
-//  timeinfo.tm_hour = atoi(Hour);          // hours since midnight (0-23)
-//  timeinfo.tm_min = atoi(Min);           // minutes after the hour (0-59)
-//  timeinfo.tm_sec = atoi(Sec);            // seconds after the minute (0-60)
-//
-//  // convert the time to a Unix timestamp
-//  time_t timestamp = mktime(&timeinfo);
-//
-//  // print the timestamp
-//  Serial.println(timestamp);
-//  delay(1000);
-//}

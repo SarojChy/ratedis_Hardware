@@ -15,7 +15,7 @@ void JSON_Conversion() {
 
   for (int i = 0; i < keys.length(); i++) {
     JSONVar value = myObject[keys[i]];
-    valueReadingsArr[i] = double(value);
+    valueReadingsArr[i] = JSON.stringify(value);
     S_unixTime = valueReadingsArr[0];
     buy_gold_22_per_tola = valueReadingsArr[2];
     buy_gold_24_per_tola = valueReadingsArr[3];

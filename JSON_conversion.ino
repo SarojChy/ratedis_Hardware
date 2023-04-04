@@ -17,14 +17,14 @@ void JSON_Conversion() {
     JSONVar value = myObject[keys[i]];
     valueReadingsArr[i] = JSON.stringify(value);
     S_unixTime = valueReadingsArr[0];
-    buy_gold_22_per_tola = valueReadingsArr[2];
-    buy_gold_24_per_tola = valueReadingsArr[3];
-    buy_gold_22_per_10g = valueReadingsArr[4];
-    buy_silver = valueReadingsArr[5];
-    sell_gold_22_per_tola = valueReadingsArr[6];
-    sell_gold_24_per_tola = valueReadingsArr[7];
-    sell_gold_22_per_10g = valueReadingsArr[8];
-    sell_silver = valueReadingsArr[9];
+    buy_gold_22_per_tola = valueReadingsArr[4];
+    buy_gold_24_per_tola = valueReadingsArr[5];
+    buy_gold_22_per_10g = valueReadingsArr[6];
+    buy_silver = valueReadingsArr[7];
+    sell_gold_22_per_tola = valueReadingsArr[8];
+    sell_gold_24_per_tola = valueReadingsArr[9];
+    sell_gold_22_per_10g = valueReadingsArr[10];
+    sell_silver = valueReadingsArr[11];
   }
 }
 void DateJSON_Conversion() {

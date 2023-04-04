@@ -121,7 +121,7 @@ String getNepaliDate;
 String NepaliDate;
 String SPIFFS_Date;
 //Variables to store Price details form server
-String valueReadingsArr[9];
+String valueReadingsArr[13];
 String valueReadings;
 String S_unixTime;
 String data_date;

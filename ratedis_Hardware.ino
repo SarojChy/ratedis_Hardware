@@ -1,7 +1,7 @@
 /*
- * Nepaltronix Enginnering Solution
- * Nepatronix.org
- */
+   Nepaltronix Enginnering Solution
+   Nepatronix.org
+*/
 #include <Arduino_JSON.h>
 #include <WiFi.h>
 #include <time.h>
@@ -34,6 +34,7 @@ String uid;
 
 #define trig_pin 16 // PUSH button pin for Reseting WiFi Configuration 
 #define LED 17      //LED pin for WiFi Connection Indication
+#define Restart 19 // RESET pin
 // Pins for SEGMENTs dispaly
 const int DIO = 2;
 const int CLK = 4;
@@ -149,6 +150,7 @@ void setup() {
   WiFi.mode(WIFI_STA);
   initSPIFFS();
   pinMode(trig_pin, INPUT_PULLUP);
+  pinMode(Restart, INPUT_PULLUP);
   pinMode(LED, OUTPUT);
   // Load values saved in SPIFFS
   ssid = readFile(SPIFFS, ssidPath);
@@ -176,12 +178,18 @@ void setup() {
     delay(500);
   }
   Data = readFile(SPIFFS, dataPath);        // Read Data from SPIFFS
+  JSON_Conversion();  //  Converst the price details from JSONs
   SPIFFS_Date = readFile(SPIFFS, DatePath); // Read Date from SPIFFS
   Serial.println(SPIFFS_Date);
 }
 
 void loop() {
   currentTime = millis();
+
+  //To restart The ESP
+  if (restartESP()) {
+    ESP.restart();
+  }
   //   Access Point configuration for WiFI and UID
   if (digitalRead(trig_pin) == LOW) {
     if (currentTime - prevAPevent >= eventAPmode) {
@@ -214,17 +222,17 @@ void loop() {
       valueReadings = httpGET_Request(getDataEND);
       writeFile(SPIFFS, dataPath, valueReadings.c_str());
       Data = readFile(SPIFFS, dataPath);
+      JSON_Conversion();  //  Converst the price details from JSONs
     }
     prevUpdateTime = currentTime;
   }
-  //  Update Nepali date at each 5 minutes interval
+  //  Update Nepali date at each 30 minutes interval
   if ((WiFi.status() == WL_CONNECTED) && (currentTime - prevDateTime >= DateUpdateInterval)) {
 
     DateJSON_Conversion();  //Receives New date from Server
     prevDateTime = currentTime;
   }
 
-  JSON_Conversion();  //  Converst the price details from JSONs
   printData(); //Print data to Serial Monitor
   dispalyData(); // Display data to Dispaly Board
   updateTime(); // Update Time and display to Board

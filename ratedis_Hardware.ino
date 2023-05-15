@@ -163,10 +163,9 @@ void setup() {
   Serial.println(ssid);
   Serial.println(pass);
   Serial.println(uid);
-  for (int i = 0; i < 5; i ++) {
-    WiFi.begin(ssid.c_str(), pass.c_str());  //Waits for WiFi for 5 Seconds
-    delay(1000);
-  }
+
+  WiFi.begin(ssid.c_str(), pass.c_str());  //Waits for WiFi for 5 Seconds
+  delay(5000);
   Serial.print("Connected to WiFi network with IP Address: ");
   Serial.println(WiFi.localIP());
   //  If WiFi connected then Initializes all the parameters from server
